@@ -1,0 +1,62 @@
+@import "../mixin.scss";
+
+$cor-texto: #725C5C ;
+$cor-marca: linear-gradient(180deg, rgba(255,179,84,1) 20%, rgba(238,122,58,1) 100%);
+$cor-borda:#E7E7E7;
+
+.menu-lateral {
+  width: 220px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 2px 0px 5px 0px $cor-borda;
+  -moz-box-shadow: 2px 0px 5px 0px $cor-borda;
+  box-shadow: 2px 0px 5px 0px $cor-borda;
+
+
+.titulo{
+  min-width: 100%;
+  height: 68px;
+  font-size: 30px;
+  font-weight: bold;
+  background: $cor-marca;
+  color: white;
+  @include alinha-centro
+}
+
+.imagem {
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__item {
+  height: 35px;
+  text-decoration: none;
+  border-bottom: 2px solid $cor-borda;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 15px;
+  color: $cor-texto;
+}
+
+.nav__item:hover {
+  background-color: #e7e7e744
+}
+
+.ativo {
+ @extend .nav__item ;
+  border-left: 5px solid #FFB455;
+  background-color: #FDF1EB;
+}
+
+.ativo:hover{
+  background-color: #ffb5552b;
+}
+
+}
+

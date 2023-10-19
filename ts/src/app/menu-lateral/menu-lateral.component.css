@@ -1,0 +1,45 @@
+.menu-lateral {
+  width: 220px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0px 5px 0px #E7E7E7;
+}
+.menu-lateral .titulo {
+  min-width: 100%;
+  height: 68px;
+  font-size: 30px;
+  font-weight: bold;
+  background: linear-gradient(180deg, rgb(255, 179, 84) 20%, rgb(238, 122, 58) 100%);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-lateral .imagem {
+  width: 100%;
+}
+.menu-lateral .nav {
+  display: flex;
+  flex-direction: column;
+}
+.menu-lateral .nav__item, .menu-lateral .ativo {
+  height: 35px;
+  text-decoration: none;
+  border-bottom: 2px solid #E7E7E7;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 15px;
+  color: #725C5C;
+}
+.menu-lateral .nav__item:hover, .menu-lateral .ativo:hover {
+  background-color: rgba(231, 231, 231, 0.2666666667);
+}
+.menu-lateral .ativo {
+  border-left: 5px solid #FFB455;
+  background-color: #FDF1EB;
+}
+.menu-lateral .ativo:hover {
+  background-color: rgba(255, 181, 85, 0.168627451);
+}/*# sourceMappingURL=menu-lateral.component.css.map */
