@@ -48,6 +48,7 @@ header{
   background-color: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .usario-container{
@@ -60,6 +61,8 @@ header{
   flex-direction: column;
   justify-content: center;
   align-items: end;
+  color: #333;
+  font-size: 14px
 }
 
 .foto-container{
