@@ -1,5 +1,6 @@
 
 $fonte-laranja: #ED7839; 
+$cor-texto: #5C5C5C;
 
 .apresentacao{
   display: flex;
@@ -8,9 +9,10 @@ $fonte-laranja: #ED7839;
 
 .apresentacao-container{
   max-width: 70%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
 }
 
 .apresentacao-container h2{
@@ -22,12 +24,13 @@ $fonte-laranja: #ED7839;
 }
 
 aside {
-  max-width: 250px;
+  min-width: 250px;
+  max-width: 300px;
+  height: auto;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: end;
   flex-direction: column;
-  gap: 12px;
 }
 
 .botoes-container{
@@ -57,6 +60,62 @@ aside button:active {
   font-size: 14px;
   color: $fonte-laranja;
   font-weight: 500;
+  padding: 12px 0;
+}
+
+.detalhes {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border: 1px solid #ECECEC;
+  border-radius: 5px;
+}
+
+.detalhes-titulo{
+  font-size: 25px;
+  background-color: #FDF1EB;
+  padding: 10px 15px;
+  font-weight: 500;
+  color: #4E4E4E;
+}
+
+.detalhes-info{
+  padding: 0 15px;
+}
+
+.detalhes-item{
+  font-size: 14px;
+  color: $cor-texto;
+  line-height: 1.5;
+}
+
+.detalhes-item span {
+  font-weight: bold;
+}
+
+.detalhes-autores{
+  padding: 0 15px;
+}
+
+.autores-item{
+  font-size: 14px;
+  color: $cor-texto;
+  line-height: 1.5;
+}
+
+.autores-item span {
+  font-weight: bold;
+}
+
+.detalhes-universidades{
+  padding: 0 15px 15px 15px; 
+}
+
+.universidades-item{
+  font-size: 12px;
+  color: $cor-texto;
+  line-height: 1.5;
 }
 
 @media screen and (min-width: 2000px) {
@@ -64,3 +123,4 @@ aside button:active {
     max-width: 50%;
   }
 }
+
