@@ -66,10 +66,15 @@ export class AppComponent {
   })
 }
 
+enviarTopico(e: Event) {
+  e.preventDefault();  
+  const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
+
+  formulario.classList.add("hidden")
   
+}
   
-  
-  
+
   
 
 }
