@@ -203,6 +203,9 @@ aside button:active {
   font-size: 14px;
   color: #5C5C5C;
   line-height: 1.5;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
 }
 
 .btn-show-less {

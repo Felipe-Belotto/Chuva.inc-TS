@@ -16,7 +16,7 @@ export class AppComponent {
     const botaoVerMenos = document.getElementById("btnShowLess");
     const listaParagrafos: NodeList = document.querySelectorAll('[data-paragrafo]');
     const arrayParagrafos: HTMLParagraphElement[] = Array.from(listaParagrafos, (p) => p as HTMLParagraphElement);
-  
+
     (botaoVerMais as HTMLButtonElement).style.display = "none";
     (botaoVerMenos as HTMLButtonElement).style.display = "flex";
   

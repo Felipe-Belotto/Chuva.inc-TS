@@ -1,4 +1,8 @@
 @import url("reset.css");
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   width: 100%;
   min-height: 100vh;

@@ -2,6 +2,7 @@
 
 $fonte-laranja: #ED7839; 
 $cor-texto: #5C5C5C;
+$detalhes-fontsize: 14px;
 
 .apresentacao{
   display: flex;
@@ -85,8 +86,6 @@ aside button:active {
   padding: 0 15px;
 }
 
-$detalhes-fontsize: 14px;
-
 .detalhes-item{
   font-size: $detalhes-fontsize;
   color: $cor-texto;
@@ -99,6 +98,14 @@ $detalhes-fontsize: 14px;
 
 .detalhes-autores{
   padding: 0 15px;
+}
+
+.detalhes-autores a{
+  text-decoration: none;
+}
+
+.detalhes-autores a:hover {
+  text-decoration: underline;
 }
 
 .autores-item{

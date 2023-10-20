@@ -100,6 +100,14 @@ aside button:active {
   padding: 0 15px;
 }
 
+.detalhes-autores a {
+  text-decoration: none;
+}
+
+.detalhes-autores a:hover {
+  text-decoration: underline;
+}
+
 .autores-item {
   font-size: 14px;
   color: #5C5C5C;
