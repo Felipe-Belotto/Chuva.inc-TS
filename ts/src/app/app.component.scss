@@ -33,6 +33,25 @@ main{
 
 @media screen and (max-width: 1444px) {
   .artigo-content{
-    padding: 20px 5px;
+    padding: 20px 10px;
   }
 }
+
+@media screen and (max-width: 1444px) {
+
+  .main-content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+  }
+
+  .artigo-content{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+
+}
+

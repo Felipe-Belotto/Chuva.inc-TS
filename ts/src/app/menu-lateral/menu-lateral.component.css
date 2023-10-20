@@ -45,4 +45,10 @@
 }
 .menu-lateral .ativo:hover {
   background-color: #FDF1EB;
+}
+
+@media screen and (max-width: 1250px) {
+  .menu-lateral {
+    display: none;
+  }
 }/*# sourceMappingURL=menu-lateral.component.css.map */

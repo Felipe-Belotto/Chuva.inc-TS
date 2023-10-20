@@ -63,3 +63,8 @@ $cor-borda:#E7E7E7;
 
 }
 
+@media screen and (max-width: 1250px) {
+  .menu-lateral{
+    display: none;
+  }
+}

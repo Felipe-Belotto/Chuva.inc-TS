@@ -2,17 +2,17 @@
 .apresentacao {
   display: flex;
   justify-content: space-between;
+  gap: 5px;
 }
 
 .apresentacao-container {
-  max-width: 70%;
-  height: 100%;
+  max-width: auto;
   display: flex;
   flex-direction: column;
-  gap: 28px;
 }
 
 .apresentacao-container h2 {
+  min-height: 68px;
   color: #ED7839;
   font-size: 20px;
   font-weight: bolder;
@@ -20,9 +20,13 @@
   flex-wrap: wrap;
 }
 
+.apresentacao-container img {
+  height: 100%;
+  width: auto;
+}
+
 aside {
-  min-width: 250px;
-  max-width: 300px;
+  min-width: 242px;
   height: auto;
   display: flex;
   justify-content: space-between;
@@ -67,8 +71,8 @@ aside button:active {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  border: 1px solid #ECECEC;
   border-radius: 5px;
+  border: 1px solid #ECECEC;
 }
 
 .detalhes-titulo {
@@ -122,6 +126,82 @@ aside button:active {
     max-width: 50%;
   }
 }
+/* @media screen and (max-width: 1444px) {
+} */
+@media screen and (max-width: 1250px) {
+  .apresentacao {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+  }
+  .apresentacao-container h2 {
+    height: 100%;
+  }
+  aside {
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+  }
+  .botoes-container {
+    justify-content: center;
+  }
+  .detalhes {
+    width: 100%;
+  }
+}
+.resumo {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ECECEC;
+  border-radius: 5px;
+}
+
+.resumo h3 {
+  font-size: 25px;
+  background-color: #FDF1EB;
+  padding: 10px 15px;
+  font-weight: 500;
+  color: #4E4E4E;
+}
+
+.resumo-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn-show-more, .btn-show-less {
+  text-align: start;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: #5C5C5C;
+  line-height: 1.5;
+}
+
+.btn-show-less {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn-span {
+  background-color: #ffffff;
+  color: #ED7839;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 :host {
   font-family: "Roboto", sans-serif;
 }
@@ -139,10 +219,31 @@ main {
 
 .artigo-content {
   padding: 20px 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
+@media screen and (max-width: 1600px) {
+  .artigo-content {
+    padding: 20px 10px;
+  }
+}
 @media screen and (max-width: 1444px) {
   .artigo-content {
     padding: 20px 10px;
+  }
+}
+@media screen and (max-width: 1444px) {
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+  }
+  .artigo-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
 }/*# sourceMappingURL=app.component.css.map */
