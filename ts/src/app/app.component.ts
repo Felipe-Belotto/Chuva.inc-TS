@@ -52,8 +52,11 @@ export class AppComponent {
   }
   
  criarTopico() {
+  const botaoCriarTopico = document.querySelector("[data-btn-create-topic]") as HTMLButtonElement;
   const listaElementos: NodeList = document.querySelectorAll('[data-topico-inicial]');
   const arrayElementos: HTMLElement[] = [];
+
+  const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
 
   listaElementos.forEach((element) => {
     if (element instanceof HTMLElement) {
@@ -64,13 +67,21 @@ export class AppComponent {
   arrayElementos.forEach((item) => {
     item.classList.add("hidden")
   })
+
+
+  botaoCriarTopico?.classList.add("hidden")
+  formulario.classList.remove("hidden")
 }
 
 enviarTopico(e: Event) {
   e.preventDefault();  
   const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
-
+  const botaoCriarTopico = document.querySelector("[data-btn-create-topic]") as HTMLButtonElement;
+  const mensagemEnviado = document.querySelector("[data-topico-enviado]")
+  
+  botaoCriarTopico.classList.remove("hidden")
   formulario.classList.add("hidden")
+  mensagemEnviado?.classList.remove("hidden")
   
 }
   

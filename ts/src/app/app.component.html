@@ -90,12 +90,18 @@
 
         <p class="discussoes-frase" data-topico-inicial>Sabia que o maior estímulo no desenvolvimento científico e cultural é a curiosidade? Deixe seus questionamentos ou sugestões para o autor!</p>
 
-        <div class="linha" data-topico-inicial>
+        <div class="topico-enviado hidden" data-topico-enviado>
+          <h3 class="mensagem-aviso">Seu tópico foi enviado com sucesso! :D</h3>
+          <p>Agradecemos por sua contribuição, uma notificação será enviada ao seu email assim que seu tópico for respondido!</p>
+          <a href="#">Descubra outros trabalhos!</a>
+        </div>
+
+        <div class="linha" data-btn-create-topic>
           <button class="btn-create-topic" (click)="criarTopico()"><img [src]="'assets/img/discussoes/criar.svg'"> criar tópico</button>
         </div>
 
 
-        <form class="formulario-topico" (submit)="enviarTopico($event)" data-formulario-topico>
+        <form class="formulario-topico hidden" (submit)="enviarTopico($event)" data-formulario-topico>
 
           <p>Tem uma dúvida ou sugestão? Compartilhe seu feedback com os autores!</p>
 

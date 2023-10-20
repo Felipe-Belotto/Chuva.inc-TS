@@ -61,7 +61,31 @@
     }
   }
 
-  
-
-
 }
+
+ .topico-enviado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 0 0 38px 0;
+
+    .mensagem-aviso{
+      color: #ED7839;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    p{
+      color: #5C5C5C;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    a{
+      color: #f48f44;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+  }
