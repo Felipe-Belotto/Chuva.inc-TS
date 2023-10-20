@@ -1,0 +1,65 @@
+@import "../mixin.scss";
+
+footer{
+  margin: 0 45px ;
+  display: flex;
+  border-top: 1px solid #e7e7e7;
+  padding: 15px 0;
+  gap: 30px;
+}
+
+.logo {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+footer img {
+  width: 100%;
+  height: auto;
+}
+
+.saber-mais {
+  @include alinha-centro;
+  background-color: #71478e;
+  color: #fff;
+  min-height: 30px;
+  border-radius: 5px;
+  outline: none;
+  text-decoration: none;
+}
+
+footer .texto {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  font-size: 18px;
+  color: #333;
+  gap: 10px;
+  font-weight: 400;
+}
+
+footer .texto p strong {
+  color: #333;
+  font-weight: bold;
+}
+
+@media screen and (max-width:1250px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo{
+    width: 40%;
+  }
+}
+
+@media screen and (max-width:768px) {
+
+  .logo{
+    width: 100%;
+  }
+}
