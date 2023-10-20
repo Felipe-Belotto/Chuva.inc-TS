@@ -33,6 +33,7 @@ $resumo-fontsize: 14px;
   font-size: $resumo-fontsize;
   color: #5C5C5C ;
   line-height: 1.5;
+  user-select: text;
 }
 
 .btn-show-less{

@@ -9,6 +9,9 @@ export class AppComponent {
   title = 'DevChuva';
 
   showMore() {
+
+    /* Código para ver mais */
+
     const botaoVerMais = document.getElementById("btnShowMore");
     const botaoVerMenos = document.getElementById("btnShowLess");
     const listaParagrafos: NodeList = document.querySelectorAll('[data-paragrafo]');
@@ -21,23 +24,34 @@ export class AppComponent {
       p.classList.remove('hidden');
     });
   }
+  showLess() {
 
-  showLess(){
+    /* Código para saber se o usuário tentou selecionar o texto, caso tenha selecionado ele não irá fechar o resumo para caso queira copiar o texto: não tenha problemas com a função de abrir e fechar o resumo */
+
+    const currentSelection = window.getSelection();
+  
+    const isTextSelected = currentSelection && currentSelection.toString().length > 0;
+  
+    if (isTextSelected) {
+      return;
+    }
+
+    /* Código para ver menos */
+  
     const botaoVerMais = document.getElementById("btnShowMore");
     const botaoVerMenos = document.getElementById("btnShowLess");
     const listaParagrafos: NodeList = document.querySelectorAll('[data-paragrafo]');
     const arrayParagrafos: HTMLParagraphElement[] = Array.from(listaParagrafos, (p) => p as HTMLParagraphElement);
-
+  
     (botaoVerMenos as HTMLButtonElement).style.display = "none";
     (botaoVerMais as HTMLButtonElement).style.display = "flex";
-
-
+  
     arrayParagrafos.forEach((p) => {
       p.classList.add('hidden');
     });
-
-   
   }
+  
+  
   
   
   
