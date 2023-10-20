@@ -78,15 +78,13 @@ header{
 }
 
 .notificacao-container{
-  position: fixed;
-  top: 45px
+  position: absolute;
+  top: 5px;
+  right: 30px;
 }
 
 .perfil-notificacao{
   @include alinha-centro;
-  position: relative;
-  bottom: 32px;
-  left: 15px;
   width: 12px;
   height: 12px;
   background-color: red;
@@ -94,4 +92,13 @@ header{
   font-size: 10px;
   color: white;
   padding: 3px;
+}
+
+@media screen and (max-width: 1444px) {
+
+  .titulo__container h1 {
+    font-size: 18px;
+    color: $cor-texto;
+  }
+  
 }
