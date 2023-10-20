@@ -1,0 +1,11 @@
+.discussoes {
+  display: flex;
+}
+
+.discussoes .titulo {
+  font-size: 25px;
+  background-color: #FDF1EB;
+  padding: 10px 15px;
+  font-weight: 500;
+  color: #4E4E4E;
+}/*# sourceMappingURL=discussoes.css.map */

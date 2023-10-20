@@ -1,0 +1,71 @@
+
+.discussoes {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  @include artigo-borda;
+  gap: 15px;
+
+
+.titulo {
+  @include artigo-titulo;
+}
+
+.discussoes-informativo{
+  text-align: center;
+  font-size: 18px;
+  color: #ED7839;
+  font-weight: 700;
+}
+
+.discussoes-icones{
+ @include alinha-centro;
+  gap: 50px;
+  padding: 15px 0;
+}
+
+.discussoes-frase{
+  width: 80%;
+align-self: center;
+color: #595959;
+text-align: center;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 137.5%;
+padding: 0 0 30px 0;
+}
+
+.linha{
+  align-self: center;
+  @include alinha-centro;
+  width: 98%;
+  height: 1px;
+  background-color: #ececec;
+  position: static;
+}
+
+.btn-create-topic{
+  @include alinha-centro;
+  gap: 5px;
+  width: 133px;
+  height: 32px;
+  flex-shrink: 0; 
+  background: linear-gradient(180deg, #FEB254 0%, #F0813D 100%);
+  backdrop-filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.24)) drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.12));
+  border: none;
+  color: #FFF;
+font-size: 15px;
+font-weight: 700;
+line-height: 16px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+}
+
+/* @media screen and (max-width: 1250px) {
+  .discussoes-frase{  
+  }
+} */
+
