@@ -29,6 +29,10 @@ footer img {
   text-decoration: none;
 }
 
+.saber-mais:active {
+  transform: scale(0.99);
+}
+
 footer .texto {
   display: flex;
   flex-direction: column;
@@ -38,6 +42,7 @@ footer .texto {
   color: #333;
   gap: 10px;
   font-weight: 400;
+  line-height: 1.5;
 }
 
 footer .texto p strong {
