@@ -121,11 +121,8 @@ aside button:active {
   line-height: 1.5;
 }
 
-@media screen and (min-width: 2000px) {
-  .apresentacao-container {
-    max-width: 50%;
-  }
-}
+/* @media screen and (min-width: 2000px) {
+} */
 /* @media screen and (max-width: 1444px) {
 } */
 @media screen and (max-width: 1250px) {
@@ -133,7 +130,10 @@ aside button:active {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 5px;
+    gap: 25px;
+  }
+  .apresentacao-container {
+    gap: 15px;
   }
   .apresentacao-container h2 {
     height: 100%;
@@ -146,8 +146,24 @@ aside button:active {
   .botoes-container {
     justify-content: center;
   }
+  aside button {
+    min-width: 50px;
+    height: 40px;
+  }
+  .aside-informativo {
+    font-size: 20px;
+  }
   .detalhes {
     width: 100%;
+  }
+  .detalhes-item {
+    font-size: 18px;
+  }
+  .autores-item {
+    font-size: 18px;
+  }
+  .universidades-item {
+    font-size: 14px;
   }
 }
 .resumo {
@@ -202,6 +218,14 @@ aside button:active {
   font-weight: bold;
 }
 
+@media screen and (max-width: 1250px) {
+  .btn-show-more, .btn-show-less {
+    font-size: 18px;
+  }
+  .btn-span {
+    font-size: 18px;
+  }
+}
 :host {
   font-family: "Roboto", sans-serif;
 }
@@ -230,11 +254,15 @@ main {
   }
 }
 @media screen and (max-width: 1444px) {
+  .main-content {
+    width: 100%;
+    margin-left: 220px;
+  }
   .artigo-content {
     padding: 20px 10px;
   }
 }
-@media screen and (max-width: 1444px) {
+@media screen and (max-width: 1250px) {
   .main-content {
     display: flex;
     flex-direction: column;

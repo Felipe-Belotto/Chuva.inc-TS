@@ -32,12 +32,18 @@ main{
 }
 
 @media screen and (max-width: 1444px) {
+
+  .main-content {
+    width: 100%;
+    margin-left: 220px;
+  }
+
   .artigo-content{
     padding: 20px 10px;
   }
 }
 
-@media screen and (max-width: 1444px) {
+@media screen and (max-width: 1250px) {
 
   .main-content{
     display: flex;

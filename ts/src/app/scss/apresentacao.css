@@ -1,30 +1,25 @@
-@import "../mixin.scss";
-
-$fonte-laranja: #ED7839; 
-$cor-texto: #5C5C5C;
-
-.apresentacao{
+.apresentacao {
   display: flex;
   justify-content: space-between;
   gap: 5px;
 }
 
-.apresentacao-container{
+.apresentacao-container {
   max-width: auto;
   display: flex;
   flex-direction: column;
 }
 
-.apresentacao-container h2{
+.apresentacao-container h2 {
   min-height: 68px;
-  color: $fonte-laranja ;
+  color: #ED7839;
   font-size: 20px;
   font-weight: bolder;
   display: flex;
   flex-wrap: wrap;
 }
 
-.apresentacao-container img{
+.apresentacao-container img {
   height: 100%;
   width: auto;
 }
@@ -34,11 +29,11 @@ aside {
   height: auto;
   display: flex;
   justify-content: space-between;
-  align-items: end; 
+  align-items: end;
   flex-direction: column;
 }
 
-.botoes-container{
+.botoes-container {
   width: 100%;
   display: flex;
   justify-content: end;
@@ -46,11 +41,13 @@ aside {
 }
 
 aside button {
-  @include alinha-centro;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   min-width: 43px;
   height: 30px;
-  background-color: $fonte-laranja;
+  background-color: #ED7839;
   border-radius: 4px;
   border: none;
   color: white;
@@ -61,9 +58,9 @@ aside button:active {
   transform: scale(0.96);
 }
 
-.aside-informativo{
+.aside-informativo {
   font-size: 14px;
-  color: $fonte-laranja;
+  color: #ED7839;
   font-weight: 500;
   padding: 12px 0;
 }
@@ -74,22 +71,24 @@ aside button:active {
   flex-direction: column;
   gap: 15px;
   border-radius: 5px;
-  @include artigo-borda;
+  border: 1px solid #ECECEC;
 }
 
-.detalhes-titulo{
-@include artigo-titulo;
+.detalhes-titulo {
+  font-size: 25px;
+  background-color: #FDF1EB;
+  padding: 10px 15px;
+  font-weight: 500;
+  color: #4E4E4E;
 }
 
-.detalhes-info{
+.detalhes-info {
   padding: 0 15px;
 }
 
-$detalhes-fontsize: 14px;
-
-.detalhes-item{
-  font-size: $detalhes-fontsize;
-  color: $cor-texto;
+.detalhes-item {
+  font-size: 14px;
+  color: #5C5C5C;
   line-height: 1.5;
 }
 
@@ -97,13 +96,13 @@ $detalhes-fontsize: 14px;
   font-weight: bold;
 }
 
-.detalhes-autores{
+.detalhes-autores {
   padding: 0 15px;
 }
 
-.autores-item{
-  font-size: $detalhes-fontsize;
-  color: $cor-texto;
+.autores-item {
+  font-size: 14px;
+  color: #5C5C5C;
   line-height: 1.5;
 }
 
@@ -111,74 +110,58 @@ $detalhes-fontsize: 14px;
   font-weight: bold;
 }
 
-.detalhes-universidades{
-  padding: 0 15px 15px 15px; 
+.detalhes-universidades {
+  padding: 0 15px 15px 15px;
 }
 
-.universidades-item{
+.universidades-item {
   font-size: 12px;
-  color: $cor-texto;
+  color: #5C5C5C;
   line-height: 1.5;
 }
 
 /* @media screen and (min-width: 2000px) {
 } */
-
 /* @media screen and (max-width: 1444px) {
 } */
-
 @media screen and (max-width: 1250px) {
-  $detalhes-fontsize:18px;
-
-  .apresentacao{
+  .apresentacao {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 25px;
   }
-
-  .apresentacao-container{
+  .apresentacao-container {
     gap: 15px;
   }
-
-  .apresentacao-container h2{
+  .apresentacao-container h2 {
     height: 100%;
   }
-
   aside {
     width: 100%;
     align-items: center;
     gap: 15px;
   }
-  
-
-  .botoes-container{
+  .botoes-container {
     justify-content: center;
   }
-
-  aside button{
+  aside button {
     min-width: 50px;
     height: 40px;
   }
-
-  .aside-informativo{
+  .aside-informativo {
     font-size: 20px;
   }
-
   .detalhes {
     width: 100%;
   }
-
-  .detalhes-item{
-    font-size: $detalhes-fontsize;
+  .detalhes-item {
+    font-size: 18px;
   }
-  
-  .autores-item{
-    font-size: $detalhes-fontsize;
+  .autores-item {
+    font-size: 18px;
   }
-
-  .universidades-item{
+  .universidades-item {
     font-size: 14px;
   }
-}
-
+}/*# sourceMappingURL=apresentacao.css.map */
