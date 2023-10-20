@@ -102,4 +102,7 @@ header{
 }
 
 @media screen and (max-width: 1250px) {
+  header{
+    display:  none;
+  }
 }

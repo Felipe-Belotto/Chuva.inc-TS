@@ -104,4 +104,9 @@ header {
     font-size: 18px;
     color: #725C5C;
   }
+}
+@media screen and (max-width: 1250px) {
+  header {
+    display: none;
+  }
 }/*# sourceMappingURL=cabecalho.component.css.map */
