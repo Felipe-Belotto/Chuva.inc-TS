@@ -37,7 +37,8 @@
   color: #725C5C;
 }
 .menu-lateral .nav__item:hover, .menu-lateral .ativo:hover {
-  background-color: rgba(231, 231, 231, 0.2666666667);
+  border-left: 5px solid transparent;
+  background-color: #FDF1EB;
 }
 .menu-lateral .ativo {
   border-left: 5px solid #FFB455;
