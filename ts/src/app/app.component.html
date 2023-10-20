@@ -80,19 +80,42 @@
       <section class="discussoes">
         <h3 class="titulo">Discussões</h3>
 
-        <h4 class="discussoes-informativo">Compartilhe suas ideias ou dúvidas com os autores!</h4>
+        <h4 class="discussoes-informativo" data-topico-inicial>Compartilhe suas ideias ou dúvidas com os autores!</h4>
 
-        <div class="discussoes-icones">
+        <div class="discussoes-icones" data-topico-inicial>
           <img [src]="'assets/img/discussoes/icone1.svg'">
           <img [src]="'assets/img/discussoes/icone2.svg'">
           <img [src]="'assets/img/discussoes/icone3.svg'">
         </div>
 
-        <p class="discussoes-frase">Sabia que o maior estímulo no desenvolvimento científico e cultural é a curiosidade? Deixe seus questionamentos ou sugestões para o autor!</p>
+        <p class="discussoes-frase" data-topico-inicial>Sabia que o maior estímulo no desenvolvimento científico e cultural é a curiosidade? Deixe seus questionamentos ou sugestões para o autor!</p>
 
-        <div class="linha">
-          <button class="btn-create-topic"><img [src]="'assets/img/discussoes/criar.svg'"> criar tópico</button>
+        <div class="linha" data-topico-inicial>
+          <button class="btn-create-topic" (click)="criarTopico()"><img [src]="'assets/img/discussoes/criar.svg'"> criar tópico</button>
         </div>
+
+
+        <form class="formulario-topico">
+
+          <p>Tem uma dúvida ou sugestão? Compartilhe seu feedback com os autores!</p>
+
+          <section class="preencher-container">
+            <div class="input-container">
+              <label for="topicoAssunto">Assunto</label>
+              <input id="topicoAssunto" type="text">
+            </div>
+
+
+            <div class="input-container">
+              <label for="topicoConteudo">Conteúdo</label>
+              <input id="topicoConteudo" class="input-conteudo" type="text">
+              <div class="botao-enviar">
+                <button>Enviar</button>
+              </div>
+            </div>
+          </section>
+
+        </form>
 
       </section>
 

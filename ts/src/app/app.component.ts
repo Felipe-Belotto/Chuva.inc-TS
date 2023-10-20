@@ -51,6 +51,21 @@ export class AppComponent {
     });
   }
   
+ criarTopico() {
+  const listaElementos: NodeList = document.querySelectorAll('[data-topico-inicial]');
+  const arrayElementos: HTMLElement[] = [];
+
+  listaElementos.forEach((element) => {
+    if (element instanceof HTMLElement) {
+      arrayElementos.push(element);
+    }
+  });
+
+  arrayElementos.forEach((item) => {
+    item.classList.add("hidden")
+  })
+}
+
   
   
   
