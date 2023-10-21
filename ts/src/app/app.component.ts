@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,11 @@ export class AppComponent {
   artigos: any[] = [];
   title = 'DevChuva';
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   async ngOnInit(): Promise<void> {
     await this.carregarArtigos();
   }
-  
 
   async carregarArtigos(): Promise<void> {
     try {
@@ -30,14 +31,14 @@ export class AppComponent {
       throw erro;
     }
   }
-  
+
   renderizarArtigos(dadosAPI: any[]): void {
     const listaArtigos = document.getElementById('listaArtigos');
-  
+
     if (listaArtigos) {
-     /*  Usando reverse para listar os artigos em ordem decrescente, aparecera o que foi feito por ultimo em cima */
+     /* Inverte a lista de  artigos para aparecer os criados por ultimo em cima */
       const dadosAPIInvertidos = [...dadosAPI].reverse();
-  
+
       const artigosHTML = dadosAPIInvertidos.map((artigo) => 
         artigo.Respondido 
           ? (`
@@ -66,117 +67,112 @@ export class AppComponent {
             </div>
             `)
       ).join('');
-  
+
       listaArtigos.innerHTML = artigosHTML;
+
+      this.cdr.detectChanges();
     } else {
       console.error('Elemento com ID listaArtigos não encontrado');
     }
   }
-  
-  
+
   showMore() {
     /* Código para ver mais */
-
     const botaoVerMais = document.getElementById("btnShowMore");
     const botaoVerMenos = document.getElementById("btnShowLess");
     const listaParagrafos: NodeList = document.querySelectorAll('[data-paragrafo]');
     const arrayParagrafos: HTMLParagraphElement[] = Array.from(listaParagrafos, (p) => p as HTMLParagraphElement);
-
     (botaoVerMais as HTMLButtonElement).style.display = "none";
     (botaoVerMenos as HTMLButtonElement).style.display = "flex";
-  
     arrayParagrafos.forEach((p) => {
       p.classList.remove('hidden');
     });
   }
   showLess() {
-
     /* Código para saber se o usuário tentou selecionar o texto, caso tenha selecionado ele não irá fechar o resumo para caso queira copiar o texto: não tenha problemas com a função de abrir e fechar o resumo */
-
     const currentSelection = window.getSelection();
-  
     const isTextSelected = currentSelection && currentSelection.toString().length > 0;
-  
     if (isTextSelected) {
       return;
     }
-
     /* Código para ver menos */
-  
     const botaoVerMais = document.getElementById("btnShowMore");
     const botaoVerMenos = document.getElementById("btnShowLess");
     const listaParagrafos: NodeList = document.querySelectorAll('[data-paragrafo]');
     const arrayParagrafos: HTMLParagraphElement[] = Array.from(listaParagrafos, (p) => p as HTMLParagraphElement);
-  
     (botaoVerMenos as HTMLButtonElement).style.display = "none";
     (botaoVerMais as HTMLButtonElement).style.display = "flex";
-  
     arrayParagrafos.forEach((p) => {
       p.classList.add('hidden');
     });
   }
-  
- criarTopico() {
-  const botaoCriarTopico = document.querySelector("[data-btn-create-topic]") as HTMLButtonElement;
-  const listaElementos: NodeList = document.querySelectorAll('[data-topico-inicial]');
-  const arrayElementos: HTMLElement[] = [];
-  const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
-  const mensagemEnviado = document.querySelector("[data-topico-enviado]")
 
-  listaElementos.forEach((element) => {
-    if (element instanceof HTMLElement) {
-      arrayElementos.push(element);
+  criarTopico() {
+    const botaoCriarTopico = document.querySelector("[data-btn-create-topic]") as HTMLButtonElement;
+    const listaElementos: NodeList = document.querySelectorAll('[data-topico-inicial]');
+    const arrayElementos: HTMLElement[] = [];
+    const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
+    const mensagemEnviado = document.querySelector("[data-topico-enviado]")
+
+    listaElementos.forEach((element) => {
+      if (element instanceof HTMLElement) {
+        arrayElementos.push(element);
+      }
+    });
+
+    arrayElementos.forEach((item) => {
+      item.classList.add("hidden")
+    })
+
+    botaoCriarTopico?.classList.add("hidden")
+    mensagemEnviado?.classList.add("hidden")
+    formulario.classList.remove("hidden")
+  }
+
+  async enviarTopico(e: Event): Promise<void> {
+    e.preventDefault();
+    const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
+    const botaoCriarTopico = document.querySelector("[data-btn-create-topic]") as HTMLButtonElement;
+    const mensagemEnviado = document.querySelector("[data-topico-enviado]");
+    const topicoAssuntoInput = document.querySelector("#topicoAssunto");
+    const topicoConteudoInput = document.querySelector("#topicoConteudo");
+
+    const assunto = (document.getElementById("topicoAssunto") as HTMLInputElement).value;
+    const conteudo = (document.getElementById("topicoConteudo") as HTMLInputElement).value;
+
+    botaoCriarTopico.classList.remove("hidden");
+    formulario.classList.add("hidden");
+    mensagemEnviado?.classList.remove("hidden");
+
+    await this.enviaTopicoAPI(assunto, conteudo);
+
+    await this.carregarArtigos();
+
+    formulario.reset();
+  }
+
+  async enviaTopicoAPI(assunto: string, conteudo: string): Promise<void> {
+    try {
+      const response = await fetch("https://65331c74d80bd20280f642da.mockapi.io/artigos", {
+        method: "POST",
+        body: JSON.stringify({
+          assunto: assunto,
+          conteudo: conteudo,
+          autor: "Felipe Eduardo Freire Belotto",
+          Like: 0,
+          Resposta: [],
+          Respondido: false
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+
+      const json = await response.json();
+      console.log(json);
+    } catch (error) {
+      console.error('Erro ao enviar tópico:', error);
+      throw error;
     }
-  });
-
-  arrayElementos.forEach((item) => {
-    item.classList.add("hidden")
-  })
-
-
-  botaoCriarTopico?.classList.add("hidden")
-  mensagemEnviado?.classList.add("hidden")
-  formulario.classList.remove("hidden")
+  }
 }
-
- async enviarTopico(e: Event) {
- 
-  const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
-  const botaoCriarTopico = document.querySelector("[data-btn-create-topic]") as HTMLButtonElement;
-  const mensagemEnviado = document.querySelector("[data-topico-enviado]")
-  const topicoAssuntoInput = document.querySelector("#topicoAssunto");
-  const topicoConteudoInput = document.querySelector("#topicoConteudo");
-
-  const assunto = (document.getElementById("topicoAssunto") as HTMLInputElement).value;
-  const conteudo = (document.getElementById("topicoConteudo") as HTMLInputElement).value;  
-
-  botaoCriarTopico.classList.remove("hidden")
-  formulario.classList.add("hidden")
-  mensagemEnviado?.classList.remove("hidden")
-  
-  enviaTopicoAPI(assunto, conteudo)
-
-  e.preventDefault();  
-}
-}
-
-async function enviaTopicoAPI(assunto: string,conteudo: string) {
-  await fetch("https://65331c74d80bd20280f642da.mockapi.io/artigos", {
-    method: "POST",
-    body: JSON.stringify({
-     assunto: assunto,
-     conteudo: conteudo,
-     autor: "Felipe Eduardo Freire Belotto",
-     Like: 0,
-     Resposta: [],
-     Respondido: false
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => console.log(json));
-}
-
-
