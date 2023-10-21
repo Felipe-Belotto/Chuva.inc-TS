@@ -2,6 +2,7 @@
   .lista-artigos{
     display: flex;
     flex-direction: column;
+
     .artigo-container{
       display: flex;
       flex-direction: column;
@@ -12,7 +13,6 @@
       border: 1px solid #E7E7E7;
       background: #FFF;
       box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
-
 
         .artigo-titulo{
           color: #ED7839;
@@ -46,11 +46,6 @@
           font-size: 16px;
           font-weight: 500;
             }
-          }
-
-        
-        }
-
-}
-}
+          } }}
+  }
 }

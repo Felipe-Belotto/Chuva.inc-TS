@@ -34,9 +34,11 @@ export class AppComponent {
   renderizarArtigos(dadosAPI: any[]): void {
     const listaArtigos = document.getElementById('listaArtigos');
   
-    if (listaArtigos) {
-      const artigosHTML = dadosAPI.map((artigo) => `
-        <li class="artigo-container">
+   if (listaArtigos) {
+  const artigosHTML = dadosAPI.map((artigo) => 
+    artigo.Respondido 
+      ? (`
+      <li class="artigo-container">
           <h1 class="artigo-titulo">${artigo.assunto}</h1>
           <p class="artigo-autor">${artigo.autor}</p>
           <p class="artigo-conteudo">${artigo.conteudo}</p>
@@ -46,13 +48,28 @@ export class AppComponent {
             <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
             <button><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
           </div>
+        </li>`)
+      : (`<li class="artigo-container">
+          <h1 class="artigo-titulo">${artigo.assunto} (respondido)</h1>
+          <p class="artigo-autor">${artigo.autor}</p>
+          <p class="artigo-conteudo">${artigo.conteudo}</p>
+          <div class="artigo-botoes">
+            <button><img src="assets/img/artigo/menu.svg"></button>
+            <button><img src="assets/img/artigo/favoritar.svg"></button>
+            <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
+            <button><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
+          </div>
         </li>
-      `).join('');
-  
-      listaArtigos.innerHTML = artigosHTML;
-    } else {
-      console.error('Elemento com ID listaArtigos não encontrado');
-    }
+        </div>
+        `)
+  ).join('');
+
+  listaArtigos.innerHTML = artigosHTML;
+} else {
+  console.error('Elemento com ID listaArtigos não encontrado');
+}
+
+    
   }
   
   
