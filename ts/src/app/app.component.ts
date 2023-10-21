@@ -13,8 +13,13 @@ export class AppComponent {
 
   async ngOnInit(): Promise<void> {
     await this.carregarArtigos();
-  }
 
+    // Inicia o intervalo para recarregar os artigos a cada 5 segundos
+    setInterval(async () => {
+      await this.carregarArtigos();
+      this.cdr.detectChanges();
+    }, 1000);
+  }
 
   async carregarArtigos(): Promise<void> {
     try {

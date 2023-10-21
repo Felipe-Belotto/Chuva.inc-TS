@@ -110,9 +110,7 @@
               <label for="topicoConteudo">Conteúdo</label>
               <textarea id="topicoConteudo" class="input-conteudo" maxlength="1000" placeholder="Defina um conteúdo para o seu tópico... (max 1000 caracteres)" required class="subject"></textarea>
               <div class="botao-enviar">
-
                 <button class="btn-submit-topic">Enviar</button>
-
               </div>
             </div>
           </section>
@@ -123,26 +121,47 @@
         </div>
 
         <section class="artigos">
-          <ul id="listaArtigos" class="lista-artigos">
-
-            <!--    <li class="artigo-container">
-              <h1 class="artigo-titulo">Assunto da pergunta aparece aqui</h1>
-              <p class="artigo-autor">Felipe Eduardo Freire Belotto</p>
-              <p class="artigo-conteudo">Comecinho da pergunta aparece aqui resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto
-                de processo formativo processo...</p>
-
-              <div class="artigo-botoes">
-                <button><img [src]="'assets/img/artigo/menu.svg'"></button>
-                <button><img [src]="'assets/img/artigo/favoritar.svg'"></button>
-                <button>
-                  <p>1 like</p>
-                </button>
-                <button>
-                  <p>1 resposta</p>
-                </button>
+          <!-- id="listaArtigos" -->
+          <ul class="lista-artigos">
+            <li class="answered-topic">
+              <div class="artigo-container">
+                <h4 class="artigo-titulo ops-topic-subject">Teste</h4>
+                <p class="artigo-autor">Teste</p>
+                <p class="artigo-conteudo">Teste</p>
+                <div class="artigo-botoes">
+                  <button><img src="assets/img/artigo/menu.svg"></button>
+                  <button><img src="assets/img/artigo/favoritar.svg"></button>
+                  <button>
+                    <p>Teste</p>
+                  </button>
+                  <button>
+                    <p>Teste</p>
+                  </button>
+                </div>
               </div>
-            </li> -->
 
+              <ul class="comments-container">
+                <li class="comment">
+                  <p class="artigo-autor">Teste</p>
+                  <p class="artigo-conteudo">Teste</p>
+                </li>
+              </ul>
+
+
+              <form class="formulario-comentario">
+                <section class="preencher-container">
+                  <div class="input-container">
+                    <label for="inputComentarioConteudo">Resposta</label>
+                    <textarea id="inputComentarioConteudo"></textarea>
+                  </div>
+                </section>
+
+                <div class="botao-enviar">
+                  <button>Enviar</button>
+                </div>
+              </form>
+
+            </li>
           </ul>
         </section>
       </section>
