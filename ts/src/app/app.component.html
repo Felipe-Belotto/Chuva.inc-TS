@@ -96,11 +96,6 @@
           <a href="#">Descubra outros trabalhos!</a>
         </div>
 
-        <div class="linha" data-btn-create-topic>
-          <button class="btn-create-topic" (click)="criarTopico()"><img [src]="'assets/img/discussoes/criar.svg'"> criar tópico</button>
-        </div>
-
-
         <form class="formulario-topico hidden" (submit)="enviarTopico($event)" data-formulario-topico>
 
           <p>Tem uma dúvida ou sugestão? Compartilhe seu feedback com os autores!</p>
@@ -108,23 +103,48 @@
           <section class="preencher-container">
             <div class="input-container">
               <label for="topicoAssunto">Assunto</label>
-              <input id="topicoAssunto" type="text">
+              <input id="topicoAssunto" type="text" placeholder="Defina um tópico sucinto para notificar os autores...">
             </div>
-
 
             <div class="input-container">
               <label for="topicoConteudo">Conteúdo</label>
-              <input id="topicoConteudo" class="input-conteudo" type="text">
+              <textarea id="topicoConteudo" class="input-conteudo" maxlength="1000" placeholder="Defina um conteúdo para o seu tópico... (max 1000 caracteres)"></textarea>
               <div class="botao-enviar">
+
                 <button>Enviar</button>
+
               </div>
             </div>
           </section>
-
         </form>
 
-      </section>
+        <div class="linha">
+          <button class="btn-create-topic" (click)="criarTopico()" data-btn-create-topic><img [src]="'assets/img/discussoes/criar.svg'"> criar tópico</button>
+        </div>
 
+        <section class="artigos">
+          <ul id="listaArtigos" class="lista-artigos">
+            <li class="artigo-container">
+              <h1 class="artigo-titulo">Assunto da pergunta aparece aqui</h1>
+              <p class="artigo-autor">Felipe Eduardo Freire Belotto</p>
+              <p class="artigo-conteudo">Comecinho da pergunta aparece aqui resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto
+                de processo formativo processo...</p>
+
+              <div class="artigo-botoes">
+                <button><img [src]="'assets/img/artigo/menu.svg'"></button>
+                <button><img [src]="'assets/img/artigo/favoritar.svg'"></button>
+                <button>
+                  <p>1 like</p>
+                </button>
+                <button>
+                  <p>1 resposta</p>
+                </button>
+
+              </div>
+            </li>
+          </ul>
+        </section>
+      </section>
     </section>
     <rodape></rodape>
   </section>

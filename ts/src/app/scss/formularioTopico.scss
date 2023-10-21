@@ -29,12 +29,22 @@
       font-weight: 700;
     }
 
-    input {
-      height: 39px;
+    input, textarea {
       border-radius: 3px;
       border: 1px solid #CCC;
       background: #FFF;
       outline: none;
+    }
+
+    input{
+      min-height: 39px;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 78px;
+      resize: none;
+      font-size: 14px;
     }
 
     .input-conteudo {
