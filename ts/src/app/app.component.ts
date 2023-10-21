@@ -45,6 +45,7 @@ export class AppComponent {
           <li class="answered-topic">
           <div class="artigo-container" >
               <h1 class="artigo-titulo ops-topic-subject" (click)="mostrarComentarios(${artigo.id})">${artigo.assunto}</h1>
+              <p class="artigo-autor">${artigo.autor}</p>
               <p class="artigo-conteudo">${artigo.conteudo}</p>
               <div class="artigo-botoes">
                 <button><img src="assets/img/artigo/menu.svg"></button>
