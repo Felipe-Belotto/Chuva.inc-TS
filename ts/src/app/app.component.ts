@@ -6,10 +6,58 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  artigos: any[] = [];
   title = 'DevChuva';
 
-  showMore() {
+  async ngOnInit(): Promise<void> {
+    await this.carregarArtigos();
+  }
+  
 
+  async carregarArtigos(): Promise<void> {
+    try {
+      const dadosAPI = await fetch('https://65331c74d80bd20280f642da.mockapi.io/artigos')
+        .then((resposta) => resposta.json())
+        .catch((erro) => {
+          console.error('Erro na requisição:', erro);
+          throw erro;
+        });
+
+      this.artigos = dadosAPI;
+      this.renderizarArtigos(this.artigos);
+    } catch (erro) {
+      console.error('Erro ao carregar os artigos:', erro);
+      throw erro;
+    }
+  }
+  
+  renderizarArtigos(dadosAPI: any[]): void {
+    const listaArtigos = document.getElementById('listaArtigos');
+  
+    if (listaArtigos) {
+      const artigosHTML = dadosAPI.map((artigo) => `
+        <li class="artigo-container">
+          <h1 class="artigo-titulo">${artigo.assunto}</h1>
+          <p class="artigo-autor">${artigo.autor}</p>
+          <p class="artigo-conteudo">${artigo.conteudo}</p>
+          <div class="artigo-botoes">
+            <button><img src="assets/img/artigo/menu.svg"></button>
+            <button><img src="assets/img/artigo/favoritar.svg"></button>
+            <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
+            <button><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
+          </div>
+        </li>
+      `).join('');
+  
+      listaArtigos.innerHTML = artigosHTML;
+    } else {
+      console.error('Elemento com ID listaArtigos não encontrado');
+    }
+  }
+  
+  
+
+  showMore() {
     /* Código para ver mais */
 
     const botaoVerMais = document.getElementById("btnShowMore");
@@ -55,7 +103,6 @@ export class AppComponent {
   const botaoCriarTopico = document.querySelector("[data-btn-create-topic]") as HTMLButtonElement;
   const listaElementos: NodeList = document.querySelectorAll('[data-topico-inicial]');
   const arrayElementos: HTMLElement[] = [];
-
   const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
 
   listaElementos.forEach((element) => {
