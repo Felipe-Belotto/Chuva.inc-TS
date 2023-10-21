@@ -56,18 +56,29 @@ export class AppComponent {
               </div>
               </div>
             </li>`)
-          : (`<li class="artigo-container">
+          : (`<li class="no-answered-topic">
+              <section class="no-answered-filter">
+  
+              <img src="assets/img/artigo/verificacao.png">
+
+              <p>Aguardando feedback dos autores</p>
+
+              <a href="#">Editar tópico</a>
+              
+              </section>
+
+              <div class="artigo-container">
               <h1 class="artigo-titulo">${artigo.assunto}</h1>
               <p class="artigo-autor">${artigo.autor}</p>
               <p class="artigo-conteudo">${artigo.conteudo}</p>
-              <div class="artigo-botoes">
-                <button><img src="assets/img/artigo/menu.svg"></button>
-                <button><img src="assets/img/artigo/favoritar.svg"></button>
-                <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
-                <button (click)=""><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
+                <div class="artigo-botoes">
+                  <button><img src="assets/img/artigo/menu.svg"></button>
+                  <button><img src="assets/img/artigo/favoritar.svg"></button>
+                  <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
+                  <button (click)=""><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
+                </div>  
               </div>
             </li>
-            </div>
             `)
       ).join('');
 

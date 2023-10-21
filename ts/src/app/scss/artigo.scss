@@ -49,3 +49,39 @@
           } }}
   }
 }
+
+.no-answered-topic{
+  position: relative;
+}
+
+.no-answered-filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  border-radius: 4px;
+  top: 15px;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px); 
+  background-color: #f5f5f593;
+  backdrop-filter: blur(2px);
+  z-index: 1; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  p{
+    color: #5C5C5C;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  a{
+    color: #ED7839;
+    font-size: 14px;
+  }
+}
