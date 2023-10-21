@@ -73,6 +73,14 @@
   align-items: center;
   justify-content: center;
 
+  button{
+    background-color: transparent;
+    border: none;
+  }
+
+  button:active {
+    transform: scale(0.9);
+  }
 
   p{
     color: #5C5C5C;

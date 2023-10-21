@@ -15,6 +15,7 @@ export class AppComponent {
     await this.carregarArtigos();
   }
 
+
   async carregarArtigos(): Promise<void> {
     try {
       const dadosAPI = await fetch('https://65331c74d80bd20280f642da.mockapi.io/artigos')
@@ -36,7 +37,7 @@ export class AppComponent {
     const listaArtigos = document.getElementById('listaArtigos');
 
     if (listaArtigos) {
-     /* Inverte a lista de  artigos para aparecer os criados por ultimo em cima */
+      /* Inverte a lista de artigos para aparecer os criados por ultimo em cima */
       const dadosAPIInvertidos = [...dadosAPI].reverse();
 
       const artigosHTML = dadosAPIInvertidos.map((artigo) => 
@@ -44,7 +45,7 @@ export class AppComponent {
           ? (`
           <li class="answered-topic">
           <div class="artigo-container" >
-              <h1 class="artigo-titulo ops-topic-subject" (click)="mostrarComentarios(${artigo.id})">${artigo.assunto}</h1>
+              <h4 class="artigo-titulo ops-topic-subject">${artigo.assunto}</h4>
               <p class="artigo-autor">${artigo.autor}</p>
               <p class="artigo-conteudo">${artigo.conteudo}</p>
               <div class="artigo-botoes">
@@ -53,14 +54,16 @@ export class AppComponent {
                 <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
                 <button><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
               </div>
-              <div class="comments-container">
-              </div>
+              <ul class="comments-container">
+              </ul>
               </div>
             </li>`)
           : (`<li class="no-answered-topic">
               <section class="no-answered-filter">
-  
+      
+              <button id="botaoAutoriza-${artigo.id}" data-botaoAutoriza-${artigo.id}>
               <img src="assets/img/artigo/verificacao.png">
+              </button>
 
               <p>Aguardando feedback dos autores</p>
 
@@ -76,7 +79,7 @@ export class AppComponent {
                   <button><img src="assets/img/artigo/menu.svg"></button>
                   <button><img src="assets/img/artigo/favoritar.svg"></button>
                   <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
-                  <button (click)=""><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
+                  <button (click)="autorizaTopico(${artigo.id})"><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
                 </div>  
               </div>
             </li>
@@ -85,14 +88,59 @@ export class AppComponent {
 
       listaArtigos.innerHTML = artigosHTML;
 
+      dadosAPIInvertidos.forEach((artigo) => {
+        const botaoAutoriza = document.getElementById(`botaoAutoriza-${artigo.id}`);
+        if (botaoAutoriza) {
+          botaoAutoriza.addEventListener('click', () => {
+            this.autorizarEAtulizar(artigo.id);
+          });
+        }
+      });
+
       this.cdr.detectChanges();
     } else {
       console.error('Elemento com ID listaArtigos não encontrado');
     }
+}
+
+  /* Função para autorizar o card como se o autor tivesse autorizado */
+  async autorizaTopico(id: number) {
+    try {
+      const response = await fetch(`https://65331c74d80bd20280f642da.mockapi.io/artigos/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          Respondido: true
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Falha ao autorizar tópico. Código de status: ${response.status}`);
+      }
+      const jsonData = await response.json();
+      console.log(jsonData);
+    } catch (error) {
+      console.error("Erro ao autorizar tópico:");
+      throw error;
+    }
   }
 
-  mostrarComentarios(id: number){
+  /* Função que une o autorizar para o card aparecer e o recarregamento do card */
+  async autorizarEAtulizar(id: number): Promise<void> {
+    try {
+      await this.autorizaTopico(id);
+      await this.carregarArtigos();
+      this.cdr.detectChanges();
+    } catch (error) {
+      console.error("Erro ao autorizar e atualizar:", error);
+      throw error;
+    }
+  }
+  
 
+  mostrarComentarios(id: number){
   }
 
   showMore() {
