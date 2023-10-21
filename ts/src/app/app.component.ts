@@ -61,7 +61,7 @@ export class AppComponent {
           : (`<li class="no-answered-topic">
               <section class="no-answered-filter">
       
-              <button id="botaoAutoriza-${artigo.id}" data-botaoAutoriza-${artigo.id}>
+              <button id="botaoAutoriza-${artigo.id}">
               <img src="assets/img/artigo/verificacao.png">
               </button>
 
