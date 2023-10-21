@@ -61,6 +61,21 @@ line-height: 16px;
 border-radius: 5px;
 cursor: pointer;
 }
+}
 
+@media screen and (max-width:768px) {
+  .discussoes {
+
+    .discussoes-frase{
+      font-size: 16px;
+      padding: 0 5px 30px 5px;
+    }
+
+  .btn-create-topic{
+    width: 150px;
+    height: 40px;
+  }
+
+}
 }
 

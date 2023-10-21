@@ -1,0 +1,98 @@
+.formulario-topico {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 0 0 10px 0;
+}
+.formulario-topico p {
+  color: #5C5C5C;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+.formulario-topico .preencher-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.formulario-topico .input-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+}
+.formulario-topico .input-container label {
+  color: #ED7839;
+  font-size: 16px;
+  font-weight: 700;
+}
+.formulario-topico .input-container input, .formulario-topico .input-container textarea {
+  border-radius: 3px;
+  border: 1px solid #CCC;
+  background: #FFF;
+  outline: none;
+}
+.formulario-topico .input-container input {
+  min-height: 39px;
+  font-size: 14px;
+}
+.formulario-topico .input-container textarea {
+  min-height: 78px;
+  resize: none;
+  font-size: 14px;
+}
+.formulario-topico .input-container .input-conteudo {
+  border-radius: 3px 3px 0 0;
+}
+.formulario-topico .botao-enviar {
+  width: calc(100% - 2px);
+  border-radius: 0px 0px 4px 4px;
+  border: 1px solid #CCC;
+  background: #EAF1F2;
+  display: flex;
+  justify-content: end;
+}
+.formulario-topico .botao-enviar button {
+  width: 205.104px;
+  height: 31px;
+  flex-shrink: 0;
+  border-radius: 0px 0px 4px 0px;
+  background: linear-gradient(180deg, #FEB154 0%, #F1833E 100%);
+  color: #FFF;
+  border: none;
+}
+
+.topico-enviado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 0 15px 38px 15px;
+}
+.topico-enviado .mensagem-aviso {
+  color: #ED7839;
+  font-size: 16px;
+  font-weight: 700;
+}
+.topico-enviado p {
+  color: #5C5C5C;
+  font-size: 14px;
+  font-weight: 400;
+}
+.topico-enviado a {
+  color: #f48f44;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  .formulario-topico p {
+    font-size: 16px;
+  }
+  .topico-enviado p {
+    font-size: 16px;
+    text-align: center;
+  }
+  .topico-enviado a {
+    font-size: 16px;
+  }
+}/*# sourceMappingURL=formularioTopico.css.map */

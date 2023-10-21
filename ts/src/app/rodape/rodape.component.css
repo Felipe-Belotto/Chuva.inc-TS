@@ -1,3 +1,4 @@
+/* mesege6097@scubalm.com */
 footer {
   margin: 0 45px;
   display: flex;
@@ -52,7 +53,7 @@ footer .texto p strong {
 
 @media screen and (max-width: 1920px) {
   .logo {
-    min-width: 15%;
+    max-width: 60%;
   }
 }
 @media screen and (max-width: 1250px) {
@@ -68,5 +69,9 @@ footer .texto p strong {
 @media screen and (max-width: 768px) {
   .logo {
     width: 100%;
+  }
+  footer .texto {
+    text-align: justify;
+    font-size: 14px;
   }
 }/*# sourceMappingURL=rodape.component.css.map */

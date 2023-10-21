@@ -104,6 +104,7 @@ export class AppComponent {
   const listaElementos: NodeList = document.querySelectorAll('[data-topico-inicial]');
   const arrayElementos: HTMLElement[] = [];
   const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
+  const mensagemEnviado = document.querySelector("[data-topico-enviado]")
 
   listaElementos.forEach((element) => {
     if (element instanceof HTMLElement) {
@@ -117,6 +118,7 @@ export class AppComponent {
 
 
   botaoCriarTopico?.classList.add("hidden")
+  mensagemEnviado?.classList.add("hidden")
   formulario.classList.remove("hidden")
 }
 
