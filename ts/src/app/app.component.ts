@@ -40,17 +40,20 @@ export class AppComponent {
       const dadosAPIInvertidos = [...dadosAPI].reverse();
 
       const artigosHTML = dadosAPIInvertidos.map((artigo) => 
-        artigo.Respondido 
+        artigo.Respondido
           ? (`
-          <li class="artigo-container">
-              <h1 class="artigo-titulo">${artigo.assunto}  (respondido)</h1>
-              <p class="artigo-autor">${artigo.autor}</p>
+          <li class="answered-topic">
+          <div class="artigo-container" >
+              <h1 class="artigo-titulo ops-topic-subject" (click)="mostrarComentarios(${artigo.id})">${artigo.assunto}</h1>
               <p class="artigo-conteudo">${artigo.conteudo}</p>
               <div class="artigo-botoes">
                 <button><img src="assets/img/artigo/menu.svg"></button>
                 <button><img src="assets/img/artigo/favoritar.svg"></button>
                 <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
                 <button><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
+              </div>
+              <div class="comments-container">
+              </div>
               </div>
             </li>`)
           : (`<li class="artigo-container">
@@ -74,6 +77,10 @@ export class AppComponent {
     } else {
       console.error('Elemento com ID listaArtigos não encontrado');
     }
+  }
+
+  mostrarComentarios(id: number){
+
   }
 
   showMore() {
