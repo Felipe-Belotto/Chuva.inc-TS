@@ -34,46 +34,46 @@ export class AppComponent {
   renderizarArtigos(dadosAPI: any[]): void {
     const listaArtigos = document.getElementById('listaArtigos');
   
-   if (listaArtigos) {
-  const artigosHTML = dadosAPI.map((artigo) => 
-    artigo.Respondido 
-      ? (`
-      <li class="artigo-container">
-          <h1 class="artigo-titulo">${artigo.assunto}</h1>
-          <p class="artigo-autor">${artigo.autor}</p>
-          <p class="artigo-conteudo">${artigo.conteudo}</p>
-          <div class="artigo-botoes">
-            <button><img src="assets/img/artigo/menu.svg"></button>
-            <button><img src="assets/img/artigo/favoritar.svg"></button>
-            <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
-            <button><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
-          </div>
-        </li>`)
-      : (`<li class="artigo-container">
-          <h1 class="artigo-titulo">${artigo.assunto} (respondido)</h1>
-          <p class="artigo-autor">${artigo.autor}</p>
-          <p class="artigo-conteudo">${artigo.conteudo}</p>
-          <div class="artigo-botoes">
-            <button><img src="assets/img/artigo/menu.svg"></button>
-            <button><img src="assets/img/artigo/favoritar.svg"></button>
-            <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
-            <button><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
-          </div>
-        </li>
-        </div>
-        `)
-  ).join('');
-
-  listaArtigos.innerHTML = artigosHTML;
-} else {
-  console.error('Elemento com ID listaArtigos não encontrado');
-}
-
-    
+    if (listaArtigos) {
+     /*  Usando reverse para listar os artigos em ordem decrescente, aparecera o que foi feito por ultimo em cima */
+      const dadosAPIInvertidos = [...dadosAPI].reverse();
+  
+      const artigosHTML = dadosAPIInvertidos.map((artigo) => 
+        artigo.Respondido 
+          ? (`
+          <li class="artigo-container">
+              <h1 class="artigo-titulo">${artigo.assunto}  (respondido)</h1>
+              <p class="artigo-autor">${artigo.autor}</p>
+              <p class="artigo-conteudo">${artigo.conteudo}</p>
+              <div class="artigo-botoes">
+                <button><img src="assets/img/artigo/menu.svg"></button>
+                <button><img src="assets/img/artigo/favoritar.svg"></button>
+                <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
+                <button><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
+              </div>
+            </li>`)
+          : (`<li class="artigo-container">
+              <h1 class="artigo-titulo">${artigo.assunto}</h1>
+              <p class="artigo-autor">${artigo.autor}</p>
+              <p class="artigo-conteudo">${artigo.conteudo}</p>
+              <div class="artigo-botoes">
+                <button><img src="assets/img/artigo/menu.svg"></button>
+                <button><img src="assets/img/artigo/favoritar.svg"></button>
+                <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
+                <button (click)=""><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
+              </div>
+            </li>
+            </div>
+            `)
+      ).join('');
+  
+      listaArtigos.innerHTML = artigosHTML;
+    } else {
+      console.error('Elemento com ID listaArtigos não encontrado');
+    }
   }
   
   
-
   showMore() {
     /* Código para ver mais */
 
@@ -139,21 +139,44 @@ export class AppComponent {
   formulario.classList.remove("hidden")
 }
 
-enviarTopico(e: Event) {
-  e.preventDefault();  
+ async enviarTopico(e: Event) {
+ 
   const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
   const botaoCriarTopico = document.querySelector("[data-btn-create-topic]") as HTMLButtonElement;
   const mensagemEnviado = document.querySelector("[data-topico-enviado]")
-  
+  const topicoAssuntoInput = document.querySelector("#topicoAssunto");
+  const topicoConteudoInput = document.querySelector("#topicoConteudo");
+
+  const assunto = (document.getElementById("topicoAssunto") as HTMLInputElement).value;
+  const conteudo = (document.getElementById("topicoConteudo") as HTMLInputElement).value;  
+
   botaoCriarTopico.classList.remove("hidden")
   formulario.classList.add("hidden")
   mensagemEnviado?.classList.remove("hidden")
   
+  enviaTopicoAPI(assunto, conteudo)
+
+  e.preventDefault();  
 }
-  
+}
 
-  
-
+async function enviaTopicoAPI(assunto: string,conteudo: string) {
+  await fetch("https://65331c74d80bd20280f642da.mockapi.io/artigos", {
+    method: "POST",
+    body: JSON.stringify({
+     assunto: assunto,
+     conteudo: conteudo,
+     autor: "Felipe Eduardo Freire Belotto",
+     Like: 0,
+     Resposta: [],
+     Respondido: false
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
 }
 
 
