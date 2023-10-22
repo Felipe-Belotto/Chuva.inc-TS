@@ -133,7 +133,9 @@ export class AppComponent {
             localStorage.setItem(`respostas${artigo.id}`, "desativado") :
             localStorage.setItem(`respostas${artigo.id}`, "ativado")
 
+            this.cdr.detectChanges();
              this.carregarArtigos()
+
           } )
         }
       });
