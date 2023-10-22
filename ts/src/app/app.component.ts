@@ -61,17 +61,7 @@ export class AppComponent {
               </div> 
 
               <ul class="comments-container ${localStorage.getItem(`respostas${artigo.id}`) == "ativado" ? "" : "hidden"} "  id="listaRespostas-${artigo.id}">
-                <li class="comment">
-                  <div class="comentario-titulo-container">
-                    <p class="artigo-autor">Teste</p>
-                    <div>
-                      <h5>Autor</h5>
-                      <img src="assets/img/artigo/autor.svg">
-                    </div>
-                  </div>
-
-                  <p class="artigo-conteudo">Teste</p>
-                </li>
+                
               </ul>
               
               <form class="formulario-comentario ${localStorage.getItem(`respostas${artigo.id}`) == "ativado" ? "" : "hidden"}" id="formularioResposta-${artigo.id}">
@@ -119,6 +109,34 @@ export class AppComponent {
       listaArtigos.innerHTML = artigosHTML;
       
       dadosAPIInvertidos.forEach((artigo) => {
+        
+        dadosAPIInvertidos.forEach((artigo) => {
+          const listaDeRespostas = document.getElementById(`listaRespostas-${artigo.id}`);
+          let comentariosHTML = '';
+        
+          if (artigo.respostas) {
+            artigo.respostas.forEach((comentario: any) => {
+              comentariosHTML += `
+                <li class="comment">
+                  <div class="comentario-titulo-container">
+                    <p class="artigo-autor">${comentario.autor}</p>
+                    <div>
+                      <h5>${comentario.titulo}</h5>
+                      <img src="assets/img/artigo/autor.svg">
+                    </div>
+                  </div>
+                  <p class="artigo-conteudo">${comentario.conteudo}</p>
+                </li>
+              `;
+            });
+          }
+        
+          if (listaDeRespostas) {
+            listaDeRespostas.innerHTML = comentariosHTML;
+          }
+        });
+        
+       
         const botaoAutoriza = document.getElementById(`botaoAutoriza-${artigo.id}`);
         const botaoResposta = document.getElementById(`botaoResposta-${artigo.id}`);
 
@@ -134,7 +152,7 @@ export class AppComponent {
             localStorage.setItem(`respostas${artigo.id}`, "ativado")
 
             this.cdr.detectChanges();
-             this.carregarArtigos()
+            this.carregarArtigos()
 
           } )
         }
