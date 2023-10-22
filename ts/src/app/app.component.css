@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 /* mesege6097@scubalm.com */
 /* mesege6097@scubalm.com */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 .apresentacao {
   display: flex;
   justify-content: space-between;
@@ -300,9 +301,18 @@ aside button:active {
   font-weight: 700;
   line-height: 16px;
   border-radius: 5px;
-  cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .discussoes .discussoes-frase {
+    font-size: 16px;
+    padding: 0 5px 30px 5px;
+  }
+  .discussoes .btn-create-topic {
+    width: 150px;
+    height: 40px;
+  }
+}
 .formulario-topico {
   display: flex;
   flex-direction: column;
@@ -357,7 +367,7 @@ aside button:active {
   justify-content: end;
 }
 .formulario-topico .botao-enviar button {
-  width: 205.104px;
+  width: 205px;
   height: 31px;
   flex-shrink: 0;
   border-radius: 0px 0px 4px 0px;
@@ -390,21 +400,28 @@ aside button:active {
 }
 
 @media screen and (max-width: 768px) {
-  .botao-enviar button {
-    width: 250px;
-    height: 40px;
+  .formulario-topico p {
+    font-size: 16px;
+  }
+  .topico-enviado p {
+    font-size: 16px;
+    text-align: center;
+  }
+  .topico-enviado a {
+    font-size: 16px;
   }
 }
 .artigos .lista-artigos {
   display: flex;
   flex-direction: column;
+  padding: 0 0 15px 0;
 }
 .artigos .lista-artigos .artigo-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 20px 25px;
-  margin: 15px;
+  margin: 15px 15px 0 15px;
   border-radius: 4px;
   border: 1px solid #E7E7E7;
   background: #FFF;
@@ -441,6 +458,143 @@ aside button:active {
   color: #5C5C5C;
   font-size: 16px;
   font-weight: 500;
+}
+
+.answered-topic {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.comments-container .comment {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 24px 35px 24px;
+  margin: 0 15px;
+  border: 1px solid #E7E7E7;
+  background: #FFF;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  font-family: "Quicksand", "roboto";
+}
+.comments-container .comment .comentario-titulo-container {
+  display: flex;
+  justify-content: space-between;
+}
+.comments-container .comment div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #ED7839;
+  font-size: 18px;
+  font-weight: 500;
+}
+.comments-container .comment .artigo-autor {
+  color: #5C5C5C;
+  font-size: 12px;
+  font-weight: 700;
+}
+.comments-container .comment .artigo-conteudo {
+  color: #5C5C5C;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.no-answered-topic {
+  position: relative;
+}
+
+.no-answered-filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  border-radius: 4px;
+  top: 15px;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 10px);
+  background-color: rgba(245, 245, 245, 0.5764705882);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.no-answered-filter button {
+  background-color: transparent;
+  border: none;
+}
+.no-answered-filter button:active {
+  transform: scale(0.9);
+}
+.no-answered-filter p {
+  color: #5C5C5C;
+  font-size: 18px;
+  font-weight: bold;
+}
+.no-answered-filter a {
+  color: #ED7839;
+  font-size: 14px;
+}
+
+.formulario-comentario {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px 35px 24px;
+  margin: 0 15px;
+  border: 1px solid #E7E7E7;
+  background: #FFF;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+}
+.formulario-comentario .preencher-container {
+  display: flex;
+  gap: 0px;
+}
+.formulario-comentario .input-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  gap: 5px;
+}
+.formulario-comentario .input-container label {
+  color: #ED7839;
+  font-size: 14px;
+  font-weight: 700;
+}
+.formulario-comentario .input-container textarea {
+  width: calc(100% - 4px);
+  height: 60px;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid #CCC;
+  background: #FFF;
+  outline: none;
+  /* resize: none; */
+}
+.formulario-comentario .botao-enviar {
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
+  border: 1px solid #CCC;
+  background: #EAF1F2;
+  display: flex;
+  justify-content: end;
+}
+.formulario-comentario .botao-enviar button {
+  width: 205px;
+  height: 31px;
+  flex-shrink: 0;
+  border-radius: 0px 0px 4px 0px;
+  background: linear-gradient(180deg, #FEB154 0%, #F1833E 100%);
+  color: #FFF;
+  border: none;
 }
 
 :host {

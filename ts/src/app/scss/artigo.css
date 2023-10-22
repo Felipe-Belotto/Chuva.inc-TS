@@ -1,13 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 .artigos .lista-artigos {
   display: flex;
   flex-direction: column;
+  padding: 0 0 15px 0;
 }
 .artigos .lista-artigos .artigo-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 20px 25px;
-  margin: 15px;
+  margin: 15px 15px 0 15px;
   border-radius: 4px;
   border: 1px solid #E7E7E7;
   background: #FFF;
@@ -44,4 +46,87 @@
   color: #5C5C5C;
   font-size: 16px;
   font-weight: 500;
+}
+
+.answered-topic {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.comments-container .comment {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 24px 35px 24px;
+  margin: 0 15px;
+  border: 1px solid #E7E7E7;
+  background: #FFF;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  font-family: "Quicksand", "roboto";
+}
+.comments-container .comment .comentario-titulo-container {
+  display: flex;
+  justify-content: space-between;
+}
+.comments-container .comment div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #ED7839;
+  font-size: 18px;
+  font-weight: 500;
+}
+.comments-container .comment .artigo-autor {
+  color: #5C5C5C;
+  font-size: 12px;
+  font-weight: 700;
+}
+.comments-container .comment .artigo-conteudo {
+  color: #5C5C5C;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.no-answered-topic {
+  position: relative;
+}
+
+.no-answered-filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  border-radius: 4px;
+  top: 15px;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 10px);
+  background-color: rgba(245, 245, 245, 0.5764705882);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.no-answered-filter button {
+  background-color: transparent;
+  border: none;
+}
+.no-answered-filter button:active {
+  transform: scale(0.9);
+}
+.no-answered-filter p {
+  color: #5C5C5C;
+  font-size: 18px;
+  font-weight: bold;
+}
+.no-answered-filter a {
+  color: #ED7839;
+  font-size: 14px;
 }/*# sourceMappingURL=artigo.css.map */
