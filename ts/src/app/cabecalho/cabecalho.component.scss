@@ -109,7 +109,7 @@ nav {
   }
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1220px) {
   header{
     display:  flex;
     flex-direction: column;
@@ -121,7 +121,8 @@ nav {
       top: 0;
       width: 100%;
       background-color: #ffffff;
-      box-shadow: inset 0 0 2000px rgb(251, 94, 9)
+      box-shadow: inset 0 0 2000px rgb(251, 94, 9);
+      z-index: 10;
     }
 
     .titulo__container{
@@ -210,6 +211,7 @@ nav {
   display: block;
   position: relative;
   height: 60px;
+  z-index: 1000;
 }
 
 .nav-container .checkbox {
@@ -219,7 +221,7 @@ nav {
   width: 32px;
   top: 20px;
   left: 20px;
-  z-index: 5;
+  z-index: 10;
   opacity: 0;
   cursor: pointer;
 }
