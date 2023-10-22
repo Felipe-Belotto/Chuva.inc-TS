@@ -20,10 +20,10 @@
 
           <section class="usuario-section">
 
-            <section class="usario-container" (click)="loginUsuario()">
+            <section class="usario-container">
 
               <div class="foto-container">
-                <img [src]="imagemSrc" alt="foto de perfil" class="usario-img">
+                <img [src]="imagemSrc" alt="foto de perfil" class="usario-img" (click)="loginUsuario()">
                 <div class="usario-dados">
                   <p data-nome-usuario>{{ nomeUsuario }}</p>
                 </div>

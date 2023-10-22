@@ -179,7 +179,7 @@ nav {
   font-size: 16px;
 }
 .navbar .menu-items .usario-container .foto-container {
-  width: 100%;
+  width: auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
