@@ -228,10 +228,15 @@ export class AppComponent {
 async enviaComentario(id: number, e: Event): Promise<void> {
   e.preventDefault();
   const inputConteudo = (document.getElementById(`inputComentarioConteudo-${id}`) as HTMLInputElement).value;
+  const nomeUsuario = document.querySelector("[data-nome-usuario]")
+
+  if (nomeUsuario?.textContent === "null") {
+    nomeUsuario.textContent = "";
+  }  
 
   if (inputConteudo) {
     const novoComentario: Comentario = {
-      autor: "Usuário desconhecido",
+      autor: nomeUsuario?.textContent ?? "Visitante",
       conteudo: inputConteudo,
       titulo: ""
     };

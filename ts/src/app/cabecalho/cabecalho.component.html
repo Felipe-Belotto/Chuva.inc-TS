@@ -19,12 +19,12 @@
 
           <section class="usuario-section">
 
-            <section class="usario-container">
+            <section class="usario-container" (click)="loginUsuario()">
 
               <div class="foto-container">
-                <img [src]="'https://github.com/Felipe-Belotto.png'" alt="" class="usario-img">
+                <img [src]="imagemSrc" alt="foto de perfil" class="usario-img">
                 <div class="usario-dados">
-                  <p>felipeeduardo817@gmail.com</p>
+                  <p data-nome-usuario>{{ nomeUsuario }}</p>
                 </div>
               </div>
 
@@ -70,14 +70,14 @@
       </select>
     </div>
 
-    <section class="usario-container">
+    <section class="usario-container" (click)="loginUsuario()">
       <div class="usario-dados">
         <p>Bem vindo!</p>
-        <p>alguem12@galoascience.com</p>
+        <p data-nome-usuario>{{ nomeUsuario }}</p>
       </div>
 
       <div class="foto-container">
-        <img [src]="'assets/img/perfil.png'" alt="" class="usario-img">
+        <img [src]="imagemSrc" alt="foto de perfil" class="usario-img">
         <div class="notificacao-container">
           <p class="perfil-notificacao">2</p>
         </div>

@@ -81,8 +81,9 @@ nav {
 }
 
 .usario-img {
-  width: auto;
-  height: auto;
+  max-width: 35px;
+  height: 35px;
+  padding: 0 0 5px 0;
   border-radius: 50%;
 }
 
@@ -169,18 +170,24 @@ nav {
   height: 35px;
 }
 .navbar .menu-items .usario-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 10% 0 5% 0;
 }
-.navbar .menu-items .foto-container {
+.navbar .menu-items .usario-container .usario-dados {
+  font-size: 16px;
+}
+.navbar .menu-items .usario-container .foto-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-.navbar .menu-items .usario-img {
-  width: 20%;
+.navbar .menu-items .usario-container .usario-img {
+  min-width: 100px;
   height: auto;
+  padding: 0;
 }
 
 .navbar .nav-container li {
