@@ -368,12 +368,19 @@ async enviaComentario(id: number, e: Event): Promise<void> {
 
   async enviaTopicoAPI(assunto: string, conteudo: string): Promise<void> {
     try {
+
+      const nomeUsuario = document.querySelector("[data-nome-usuario]")
+
+      if (nomeUsuario?.textContent === "null") {
+        nomeUsuario.textContent = "";
+      }  
+
       const response = await fetch("https://65331c74d80bd20280f642da.mockapi.io/artigos", {
         method: "POST",
         body: JSON.stringify({
           assunto: assunto,
           conteudo: conteudo,
-          autor: "Felipe Eduardo Freire Belotto",
+          autor: nomeUsuario?.textContent ?? "Visitante", 
           Like: 0,
           Resposta: [],
           Respondido: false

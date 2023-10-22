@@ -81,12 +81,12 @@
 }
 .comments-container .comment .artigo-autor {
   color: #5C5C5C;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 .comments-container .comment .artigo-conteudo {
   color: #5C5C5C;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -129,4 +129,17 @@
 .no-answered-filter a {
   color: #ED7839;
   font-size: 14px;
+}
+
+@media screen and (max-width: 720px) {
+  .comments-container .artigo-autor {
+    color: #5C5C5C;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .comments-container .artigo-conteudo {
+    color: #5C5C5C;
+    font-size: 16px;
+    font-weight: 400;
+  }
 }/*# sourceMappingURL=artigo.css.map */
