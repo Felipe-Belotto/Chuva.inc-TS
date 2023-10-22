@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 .artigos{
   .lista-artigos{
     display: flex;
@@ -70,6 +72,7 @@
     background: #FFF;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
     padding: 20px;
+    font-family: 'Quicksand', "roboto";
 
     .comentario-titulo-container{
       display: flex;

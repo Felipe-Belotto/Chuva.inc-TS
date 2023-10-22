@@ -1,4 +1,22 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
+import { event } from 'cypress/types/jquery';
+
+interface Artigo {
+  id: number;
+  assunto: string;
+  autor: string;
+  conteudo: string;
+  likes: number;
+  respostas: Comentario[];
+  autorizado: boolean;
+}
+
+interface Comentario {
+  autor: string;
+  conteudo: string;
+  titulo: string;
+}
+
 
 @Component({
   selector: 'app-root',
@@ -13,12 +31,50 @@ export class AppComponent {
 
   async ngOnInit(): Promise<void> {
     await this.carregarArtigos();
-
     setInterval(async () => {
+      await this.verificaSeEstaComentando()
+    }, 10000);
+  }
+
+  async atualizaDados() {
       await this.carregarArtigos();
       this.cdr.detectChanges();
-    }, 1000);
   }
+  
+  async verificaSeEstaComentando() {
+    try {
+      const dadosAPI = await fetch('https://65331c74d80bd20280f642da.mockapi.io/artigos')
+        .then((resposta) => resposta.json())
+        .catch((erro) => {
+          console.error('Erro na requisição:', erro);
+          throw erro;
+        });
+  
+      const artigos: object[] = dadosAPI;
+      const listaStatus: any[] = []
+
+      artigos.forEach((artigo: any) => {
+        const inputConteudo = document.getElementById(`inputComentarioConteudo-${artigo.id}`) as HTMLTextAreaElement;
+       
+        if (inputConteudo) {
+          const inputValor = inputConteudo.value;
+          const estaComentando = inputValor !== null && inputValor !== undefined && inputValor !== "";
+          estaComentando? listaStatus.push(estaComentando): ""
+        }
+      })
+  
+      if(!listaStatus.includes(true)){
+        return await this.atualizaDados()
+      } else {
+        console.log("está digitando")
+      }
+
+    } catch (erro) {
+      console.error('Erro ao verificar se está comentando:', erro);
+      throw erro;
+    }
+  }
+  
 
   async carregarArtigos(): Promise<void> {
     try {
@@ -68,7 +124,7 @@ export class AppComponent {
                 <section class="preencher-container">
                   <div class="input-container">
                     <label for="inputComentarioConteudo">Resposta</label>
-                    <textarea id="inputComentarioConteudo"></textarea>
+                    <textarea id="inputComentarioConteudo-${artigo.id}"></textarea>
                   </div>
                 </section>
                 <div class="botao-enviar">
@@ -109,7 +165,6 @@ export class AppComponent {
       listaArtigos.innerHTML = artigosHTML;
       
       dadosAPIInvertidos.forEach((artigo) => {
-        
         dadosAPIInvertidos.forEach((artigo) => {
           const listaDeRespostas = document.getElementById(`listaRespostas-${artigo.id}`);
           let comentariosHTML = '';
@@ -121,8 +176,8 @@ export class AppComponent {
                   <div class="comentario-titulo-container">
                     <p class="artigo-autor">${comentario.autor}</p>
                     <div>
-                      <h5>${comentario.titulo}</h5>
-                      <img src="assets/img/artigo/autor.svg">
+                    ${comentario.titulo === "" ? "" : `<h5>${comentario.titulo}</h5>
+                    <img src="assets/img/artigo/autor.svg">`}    
                     </div>
                   </div>
                   <p class="artigo-conteudo">${comentario.conteudo}</p>
@@ -130,16 +185,16 @@ export class AppComponent {
               `;
             });
           }
-        
+
           if (listaDeRespostas) {
             listaDeRespostas.innerHTML = comentariosHTML;
           }
         });
-        
        
         const botaoAutoriza = document.getElementById(`botaoAutoriza-${artigo.id}`);
         const botaoResposta = document.getElementById(`botaoResposta-${artigo.id}`);
-
+        const botaoEnviaComentario = document.getElementById(`formularioResposta-${artigo.id}`)
+      
         if (botaoAutoriza) {
           botaoAutoriza.addEventListener('click', () => {
            this.autorizarEAtulizar(artigo.id);
@@ -150,19 +205,55 @@ export class AppComponent {
             localStorage.getItem(`respostas${artigo.id}`) == "ativado" ? 
             localStorage.setItem(`respostas${artigo.id}`, "desativado") :
             localStorage.setItem(`respostas${artigo.id}`, "ativado")
-
             this.cdr.detectChanges();
             this.carregarArtigos()
-
           } )
         }
+
+        if(botaoEnviaComentario){
+          botaoEnviaComentario.addEventListener("click",(e)=> {
+            this.enviaComentario(artigo.id, e) 
+          })
+        }
+
       });
 
       this.cdr.detectChanges();
+      
     } else {
       console.error('Elemento com ID listaArtigos não encontrado');
     }
 }
+
+async enviaComentario(id: number, e: Event): Promise<void> {
+  e.preventDefault();
+  const inputConteudo = (document.getElementById(`inputComentarioConteudo-${id}`) as HTMLInputElement).value;
+
+  if (inputConteudo) {
+    const novoComentario: Comentario = {
+      autor: "Usuário desconhecido",
+      conteudo: inputConteudo,
+      titulo: ""
+    };
+
+    const responseGet = await fetch(`https://65331c74d80bd20280f642da.mockapi.io/artigos/${id}`);
+    const artigo: Artigo = await responseGet.json();
+
+    artigo.respostas.push(novoComentario);
+
+    const responsePut = await fetch(`https://65331c74d80bd20280f642da.mockapi.io/artigos/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(artigo),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+
+    // Recarrega a lista de artigos após enviar o comentário
+    await this.carregarArtigos();
+  }
+}
+
 
   /* Função para autorizar o card como se o autor tivesse autorizado */
   async autorizaTopico(id: number) {
@@ -258,8 +349,6 @@ export class AppComponent {
     const formulario: HTMLFormElement = document.querySelector("[data-formulario-topico]") as HTMLFormElement;
     const botaoCriarTopico = document.querySelector("[data-btn-create-topic]") as HTMLButtonElement;
     const mensagemEnviado = document.querySelector("[data-topico-enviado]");
-    const topicoAssuntoInput = document.querySelector("#topicoAssunto");
-    const topicoConteudoInput = document.querySelector("#topicoConteudo");
 
     const assunto = (document.getElementById("topicoAssunto") as HTMLInputElement).value;
     const conteudo = (document.getElementById("topicoConteudo") as HTMLInputElement).value;
@@ -267,11 +356,8 @@ export class AppComponent {
     botaoCriarTopico.classList.remove("hidden");
     formulario.classList.add("hidden");
     mensagemEnviado?.classList.remove("hidden");
-
     await this.enviaTopicoAPI(assunto, conteudo);
-
     await this.carregarArtigos();
-
     formulario.reset();
   }
 
