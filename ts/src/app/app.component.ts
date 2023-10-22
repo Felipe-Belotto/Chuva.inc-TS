@@ -14,7 +14,6 @@ export class AppComponent {
   async ngOnInit(): Promise<void> {
     await this.carregarArtigos();
 
-    // Inicia o intervalo para recarregar os artigos a cada 5 segundos
     setInterval(async () => {
       await this.carregarArtigos();
       this.cdr.detectChanges();
@@ -38,7 +37,7 @@ export class AppComponent {
     }
   }
 
-  renderizarArtigos(dadosAPI: any[]): void {
+    renderizarArtigos(dadosAPI: any[]): void {
     const listaArtigos = document.getElementById('listaArtigos');
 
     if (listaArtigos) {
@@ -46,23 +45,49 @@ export class AppComponent {
       const dadosAPIInvertidos = [...dadosAPI].reverse();
 
       const artigosHTML = dadosAPIInvertidos.map((artigo) => 
-        artigo.Respondido
+        artigo.autorizado
           ? (`
-          <li class="answered-topic">
-          <div class="artigo-container" >
-              <h4 class="artigo-titulo ops-topic-subject">${artigo.assunto}</h4>
-              <p class="artigo-autor">${artigo.autor}</p>
-              <p class="artigo-conteudo">${artigo.conteudo}</p>
-              <div class="artigo-botoes">
-                <button><img src="assets/img/artigo/menu.svg"></button>
-                <button><img src="assets/img/artigo/favoritar.svg"></button>
-                <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
-                <button><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
-              </div>
-              <ul class="comments-container">
+           <li class="answered-topic">
+              <div class="artigo-container">
+                <h4 class="artigo-titulo ops-topic-subject">${artigo.assunto}</h4>
+                <p class="artigo-autor">${artigo.autor}</p>
+                <p class="artigo-conteudo">${artigo.conteudo}</p>
+                <div class="artigo-botoes">
+                  <button><img src="assets/img/artigo/menu.svg"></button>
+                  <button><img src="assets/img/artigo/favoritar.svg"></button>
+                  <button><p>${artigo.likes} like${artigo.likes !== 1 ? 's' : ''}</p></button>
+                  <button id="botaoResposta-${artigo.id}"><p>${artigo.respostas.length} resposta${artigo.respostas.length !== 1 ? 's' : ''}</p></button>
+                </div>
+              </div> 
+
+              <ul class="comments-container ${localStorage.getItem(`respostas${artigo.id}`) == "ativado" ? "" : "hidden"} "  id="listaRespostas-${artigo.id}">
+                <li class="comment">
+                  <div class="comentario-titulo-container">
+                    <p class="artigo-autor">Teste</p>
+                    <div>
+                      <h5>Autor</h5>
+                      <img src="assets/img/artigo/autor.svg">
+                    </div>
+                  </div>
+
+                  <p class="artigo-conteudo">Teste</p>
+                </li>
               </ul>
-              </div>
-            </li>`)
+              
+              <form class="formulario-comentario ${localStorage.getItem(`respostas${artigo.id}`) == "ativado" ? "" : "hidden"}" id="formularioResposta-${artigo.id}">
+                <section class="preencher-container">
+                  <div class="input-container">
+                    <label for="inputComentarioConteudo">Resposta</label>
+                    <textarea id="inputComentarioConteudo"></textarea>
+                  </div>
+                </section>
+                <div class="botao-enviar">
+                  <button>Enviar</button>
+                </div>
+              </form>
+            </li>
+            
+            `)
           : (`<li class="no-answered-topic">
               <section class="no-answered-filter">
       
@@ -83,8 +108,8 @@ export class AppComponent {
                 <div class="artigo-botoes">
                   <button><img src="assets/img/artigo/menu.svg"></button>
                   <button><img src="assets/img/artigo/favoritar.svg"></button>
-                  <button><p>${artigo.Like} like${artigo.Like !== 1 ? 's' : ''}</p></button>
-                  <button (click)="autorizaTopico(${artigo.id})"><p>${artigo.Resposta.length} resposta${artigo.Resposta.length !== 1 ? 's' : ''}</p></button>
+                  <button><p>${artigo.likes} like${artigo.likes !== 1 ? 's' : ''}</p></button>
+                  <button id="botaoResposta-${artigo.id}"><p>${artigo.respostas.length} resposta${artigo.respostas.length !== 1 ? 's' : ''}</p></button>
                 </div>  
               </div>
             </li>
@@ -92,13 +117,24 @@ export class AppComponent {
       ).join('');
 
       listaArtigos.innerHTML = artigosHTML;
-
+      
       dadosAPIInvertidos.forEach((artigo) => {
         const botaoAutoriza = document.getElementById(`botaoAutoriza-${artigo.id}`);
+        const botaoResposta = document.getElementById(`botaoResposta-${artigo.id}`);
+
         if (botaoAutoriza) {
           botaoAutoriza.addEventListener('click', () => {
-            this.autorizarEAtulizar(artigo.id);
+           this.autorizarEAtulizar(artigo.id);
           });
+        }
+        if(botaoResposta) {
+          botaoResposta.addEventListener("click", () => {
+            localStorage.getItem(`respostas${artigo.id}`) == "ativado" ? 
+            localStorage.setItem(`respostas${artigo.id}`, "desativado") :
+            localStorage.setItem(`respostas${artigo.id}`, "ativado")
+
+             this.carregarArtigos()
+          } )
         }
       });
 
@@ -114,7 +150,7 @@ export class AppComponent {
       const response = await fetch(`https://65331c74d80bd20280f642da.mockapi.io/artigos/${id}`, {
         method: "PUT",
         body: JSON.stringify({
-          Respondido: true
+          autorizado: true
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -142,10 +178,6 @@ export class AppComponent {
       console.error("Erro ao autorizar e atualizar:", error);
       throw error;
     }
-  }
-  
-
-  mostrarComentarios(id: number){
   }
 
   showMore() {
