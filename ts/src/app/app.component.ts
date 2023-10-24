@@ -381,9 +381,9 @@ async enviaComentario(id: number, e: Event): Promise<void> {
           assunto: assunto,
           conteudo: conteudo,
           autor: nomeUsuario?.textContent ?? "Visitante", 
-          Like: 0,
-          Resposta: [],
-          Respondido: false
+          likes: 0,
+          respostas: [],
+          autorizado: false
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
