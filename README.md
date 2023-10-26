@@ -1,34 +1,30 @@
-# Exercícios
+# SLACA - Site de Artigos Científicos
 
-Olá! Este repositório contém os exercícios de desenvolvimento da Chuva, você **deve** implementar pelo menos uma das tecnologias disponíveis, conforme sua preferência pessoal e aptidão.
+## Descrição do Projeto
 
-Só serão considerados para correção testes em que as verificações do Github Actions estejam passando (verdinhas).
+O SLACA é um projeto feito como desafio pela empresa Chuva.inc, o projeto foi desenvolvido em TypeScript e Angular, criado para aprofundar conhecimentos na área científica. Este site permite a leitura de artigos científicos, a exploração de tópicos da comunidade e a interação por meio de comentários com outros usuários.
+
+## Recursos Principais
+
+- Leitura de Artigos Científicos
+- Exploração de Tópicos da Comunidade
+- Comentários e Interação com Autores
+- Outros recursos que serão lançados nas proximas atualizações
+
+## Como Usar
+
+1. Clone o repositório: `git clone https://github.com/seu-usuario/slaca.git`
+3. Acesse o diretório do projeto: `cd ./ts/`
+4. Instale as dependências: `npm install`
+5. Inicie o servidor de desenvolvimento: `ng serve`
+6. Abra o navegador e acesse: `http://localhost:4200/`
 
 
-# Tecnologias
-## Dart
-Nesse caso você deve implementar um protótipo de alta fidelidade no figma de uma tela para você implementar em Flutter, [veja detalhes aqui](https://github.com/chuva-inc/exercicios-2023/tree/master/dart/).
 
-## PHP
-Em PHP você deve implementar o [GaloScrapper, veja os detalhes aqui](https://github.com/chuva-inc/exercicios-2023/tree/master/php/src/WebScrapping).
+## Contato
 
-## Typescript + HTML + SCSS
-Nesse caso você deve implementar uma [página de trabalho](https://github.com/chuva-inc/exercicios-2023/tree/master/ts). Pra facilitar sua vida, nosso repositório já vem com pronto pra consumo, e mesmo que você não for familiar com o Angular ou Typescript, dá pra só colocar o html e o scss nos arquivos corretos, e vai funcionar (inclusive os testes automatizados vão passar).
+Para sugestões ou dúvidas, entre em contato via e-mail: [felipeeduardo817@gmail.com]
 
-# FAQ
-Ficou com alguma dúvida? Crie uma issue nesse repo com a sua dúvida :)
+---
 
-## Posso resolver mais de um exercício?
-Sim, pode resolver em todos se quiser, e vamos levar todas as resoluções em consideração!
-
-## Tenho que resolver todos os exercícios?
-Não, você pode resolver só um, dois, ou todos.
-
-## Como entregar os exercícios?
-
-Para entregar os exercícios:
-
-1. Crie um fork **público** deste repositório.
-2. Enquanto programa sua solução, faça [commits atômicos](https://en.wikipedia.org/wiki/Atomic_commit).
-3. Quando estiver tudo passando nos testes, grave o vídeo explicando sua resolução.
-4. Nos envie o link do seu repositório pelo formulário que te enviamos.
+**Nota:** Este é um projeto pessoal, sinta-se à vontade para adaptar conforme necessário.
