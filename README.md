@@ -25,7 +25,7 @@ O SLACA é um projeto feito como desafio pela empresa Chuva.inc, o projeto foi d
 
 ## Contato
 
-Para sugestões ou dúvidas, entre em contato via e-mail: [felipeeduardo817@gmail.com]
+Para sugestões ou dúvidas, entre em contato via e-mail: felipeeduardo817@gmail.com
 
 ---
 
